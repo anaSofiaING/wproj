@@ -1,0 +1,94 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentPublicacion.id">
+      <h4>Publicacion</h4>
+      <div>
+        <label><strong>Title:</strong></label> {{ currentPublicacion.title }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentPublicacion.description }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentPublicacion.published ? "Published" : "Pending" }}
+      </div>
+  
+      <a
+        class="badge badge-warning"
+        routerLink="/publicacion/{{ currentPublicacion.id }}"
+      >
+        Edit
+      </a>
+    </div>
+  
+    <div *ngIf="!currentPublicacion">
+      <br />
+      <p>Please click on a Publicacion...</p>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <div *ngIf="currentPublicacion.id" class="edit-form">
+      <h4>Publicacion</h4>
+      <form>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentPublicacion.title"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currentPublicacion.description"
+            name="description"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentPublicacion.published ? "Published" : "Pending" }}
+        </div>
+      </form>
+  
+      <button
+        class="badge badge-primary mr-2"
+        *ngIf="currentPublicacion.published"
+        (click)="updatePublished(false)"
+      >
+        UnPublish
+      </button>
+      <button
+        *ngIf="!currentPublicacion.published"
+        class="badge badge-primary mr-2"
+        (click)="updatePublished(true)"
+      >
+        Publish
+      </button>
+  
+      <button class="badge badge-danger mr-2" (click)="deletePublicacion()">
+        Delete
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updatePublicacion()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentPublicacion.id">
+      <br />
+      <p>Cannot access this Publicacion...</p>
+    </div>
+  </ng-template>

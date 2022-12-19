@@ -1,0 +1,43 @@
+<div id="app">
+  <nav class="navbar navbar-expand " style="background-color: #74EBD5;
+  background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%); height: 70px;
+  
+  
+  ">
+    <a href="/home" routerLink="home" class="navbar-brand"> <img src="../assets/logo.png"> Appo!</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      
+     <!--  <li class="nav-item" *ngIf="showModeratorBoard">
+        <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+      </li> -->
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Inicia Sesión</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Login</a>
+      </li> -->
+    </ul>
+
+    <ul class="navbar-nav ml-auto"  *ngIf="isLoggedIn">
+      <li class="nav-item" >
+        <a href="/contacto" class="nav-link" routerLink="contacto">Contactos</a>
+      </li>
+      <li class="nav-item">
+        <a href="/user" class="nav-link"  routerLink="user">Chat</a>
+      </li>
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">Perfil</a>
+        <!-- <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a> -->
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">Salir</a>
+      </li>
+    </ul>
+  </nav>
+
+    <router-outlet> </router-outlet>
+ 
+</div>
